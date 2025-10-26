@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Codesandbox, Menu, Send, Wifi, } from 'lucide-react';
 import img from '../assets/pr.png';
-import MyWork from '../components/Mywork';
+import MyWork from '../components/MyWork';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import Skills from '../components/Skills';
@@ -99,7 +99,7 @@ export default function Home() {
         {/* Mobile Menu */}
         {menuOpen && (
           <div className="absolute top-full left-0 w-full bg-[#1a1d2e]/95 backdrop-blur-md flex flex-col items-center py-8 space-y-6 md:hidden z-40">
-            {['home', 'about', 'skills', 'mywork', 'contact'].map((id) => (
+            {['home', 'about', 'skills', 'my work', 'contact'].map((id) => (
               <a
                 key={id}
                 href={`#${id}`}
