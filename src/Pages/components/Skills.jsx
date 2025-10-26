@@ -1,5 +1,5 @@
 import React from 'react';
-import { Code2, Server, Database, Smartphone, Palette, GitBranch } from 'lucide-react';
+import { Code2, Server, Database, Smartphone, Palette, GitBranch,Layers } from 'lucide-react';
 
 export default function Skills() {
   return (
@@ -7,7 +7,7 @@ export default function Skills() {
       <div className="max-w-6xl mx-auto px-8 text-center">
 
         <h2 className="text-4xl font-bold text-white mb-4">
-          Tech <span className="text-[#00d4ff]">Stack</span>
+          Skill <span className="text-[#00d4ff]">Stack</span>
         </h2>
         <p className="text-gray-400 mb-12">
           The technologies I use to craft smooth, scalable digital experiences
@@ -60,6 +60,14 @@ export default function Skills() {
             <h3 className="text-white font-semibold mt-4">Tools</h3>
             <p className="text-gray-400 text-sm mt-2">
               Git, GitHub, VS Code, Vite
+            </p>
+          </div>
+
+          <div className="group p-8 bg-[#111627] rounded-2xl border border-transparent hover:border-[#00d4ff] transition">
+            <Layers className="w-10 h-10 mx-auto text-gray-300 group-hover:text-[#00d4ff] transition" />
+            <h3 className="text-white font-semibold mt-4">Others</h3>
+            <p className="text-gray-400 text-sm mt-2">
+              C++, C#, SQL Database,etc
             </p>
           </div>
 

@@ -163,9 +163,9 @@ export default function Home() {
                 className="bg-[#00d4ff] text-[#1a1d2e] px-6 py-3 rounded-full font-semibold hover:bg-[#00b8e6] transition-all neon-border">
                 Got Project?
               </a>
-              <button className="px-6 py-3 rounded-full font-semibold hover:bg-[#00b8e6] transition-all neon-border">
+              <a href='/resume.pdf' target="_blank"   rel="noopener noreferrer" className="px-6 py-3 rounded-full font-semibold hover:bg-[#00b8e6] transition-all neon-border">
                 Resume
-              </button>
+              </a>
             </div>
 
             <div className="mt-6 flex items-center space-x-4">
