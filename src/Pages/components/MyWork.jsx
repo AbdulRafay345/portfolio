@@ -4,6 +4,7 @@ import bakery from '../assets/bakery.png'
 import next from '../assets/next.png'
 import intern from '../assets/intern.png'
 import event from "../assets/event.jpg"
+import learn from "../assets/learn.png"
 const projects = [
     {
         id: 1,
@@ -31,6 +32,15 @@ const projects = [
         image: intern,
         link: "#",
         github: "https://github.com/AbdulRafay345/internshipPlatform"
+    },
+    {
+        id: 4,
+        title: "Learnexa",
+        description: "Learnexa is an AI tool that creates personalized quizzes and timetables from your inputs, making learning smarter and more efficient.",
+        tech: ["React", "Tailwind", "Firebase", "GROK API", "Express"],
+        image: learn,
+        link: "#",
+        github: "https://github.com/AbdulRafay345/Learnexa.git"
     },
     {
         id: 6,
