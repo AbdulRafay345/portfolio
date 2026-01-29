@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, ExternalLink, Github, Menu, Send } from 'lucide-react';
-import bakery from '../assets/bakery.png'
-import next from '../assets/next.png'
-import intern from '../assets/intern.png'
-import event from "../assets/event.jpg"
-import learn from "../assets/learn.png"
+import bakery from '../assets/bakery.webp'
+import next from '../assets/next.webp'
+import intern from '../assets/intern.webp'
+import event from "../assets/event.webp"
+import learn from "../assets/learn.webp"
 const projects = [
     {
         id: 1,
@@ -232,10 +232,10 @@ export default function MyWork() {
 
                                         {/* Buttons */}
                                         <div className="flex gap-2 mt-auto">
-                                            <a href={project.link} className="flex-1 border border-cyan-500/40 bg-cyan-500/10 hover:bg-cyan-500/20 px-3 py-1.5 rounded-md text-xs flex items-center justify-center gap-1 transition">
+                                            <a href={project.link} target='_blank' className="flex-1 border border-cyan-500/40 bg-cyan-500/10 hover:bg-cyan-500/20 px-3 py-1.5 rounded-md text-xs flex items-center justify-center gap-1 transition">
                                                 <ExternalLink size={14} /> Live
                                             </a>
-                                            <a href={project.github} className="flex-1 border border-gray-500/30 bg-gray-700/30 hover:bg-gray-700/50 px-3 py-1.5 rounded-md text-xs flex items-center justify-center gap-1 transition">
+                                            <a href={project.github} target='_blank' className="flex-1 border border-gray-500/30 bg-gray-700/30 hover:bg-gray-700/50 px-3 py-1.5 rounded-md text-xs flex items-center justify-center gap-1 transition">
                                                 <Github size={14} /> Code
                                             </a>
                                         </div>

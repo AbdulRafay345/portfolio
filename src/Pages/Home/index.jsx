@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Codesandbox, Menu, Send, Wifi, } from 'lucide-react';
-import img from '../assets/pr.png';
+import img from '../assets/pr.webp';
 import MyWork from '../components/MyWork';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
