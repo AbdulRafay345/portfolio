@@ -5,6 +5,7 @@ import next from '../assets/next.webp'
 import intern from '../assets/intern.webp'
 import event from "../assets/event.webp"
 import learn from "../assets/learn.webp"
+import founder from "../assets/founder.webp"
 const projects = [
     {
         id: 1,
@@ -17,12 +18,12 @@ const projects = [
     },
     {
         id: 2,
-        title: "Next-Arm",
-        description: "NextARM Web delivers cutting-edge web development, mobile apps, and cloud solutions to transform your business digitally",
-        tech: ["React", "Tailwind", "Emailjs"],
-        image: next,
-        link: "https://next-arm-1.vercel.app/",
-        github: "https://github.com/AbdulRafay345/next-arm"
+        title: "Founder Pilot",
+        description: "AI-powered startup operations assistant and daily task manager for founders",
+        tech: ["Next.js", "TypeScript", "React", "Groq API", "Firebase", "Tailwind CSS", "Framer Motion",],
+        image: founder,
+        link: "https://founder-pilot-theta.vercel.app/",
+        github: "https://github.com/AbdulRafay345/FounderPilot",
     },
     {
         id: 3,
@@ -49,8 +50,16 @@ const projects = [
         tech: ["React Native", "Node.js", "MongoDB"],
         image: event,
         link: "https://www.loom.com/share/2db3c541033747f787667d6abc3b94a1",
-        github: "https://github.com/abdullahrajpot/zenbud-main.git",
-        // gradient: "from-orange-500 via-red-500 to-pink-500"
+        github: "https://github.com/AbdulRafay345/EventManagment-APP",
+    },
+    {
+        id: 7,
+        title: "Next-Arm",
+        description: "NextARM Web delivers cutting-edge web development, mobile apps, and cloud solutions to transform your business digitally",
+        tech: ["React", "Tailwind", "Emailjs"],
+        image: next,
+        link: "https://next-arm-1.vercel.app/",
+        github: "https://github.com/AbdulRafay345/next-arm"
     },
 ];
 
