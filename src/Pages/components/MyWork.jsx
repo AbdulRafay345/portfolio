@@ -32,7 +32,7 @@ const projects = [
         tech: ["React", "Tailwind", "Emailjs", "MongoDB"],
         image: intern,
         link: "#",
-        github: "https://github.com/AbdulRafay345/internshipPlatform"
+        github: "https://github.com/abdullahbutt09/internship-platform"
     },
     {
         id: 4,
