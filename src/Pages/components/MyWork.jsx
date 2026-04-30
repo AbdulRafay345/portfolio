@@ -14,7 +14,7 @@ const projects = [
         tech: ["React", "Bootstrap", "Firebase"],
         image: bakery,
         link: "https://bakery-manager-12.web.app/",
-        github: "https://github.com/AbdulRafay345/restaurant-ordering-app"
+        github: "https://github.com/AbdulRafay345/nova-bloom"
     },
     {
         id: 2,
