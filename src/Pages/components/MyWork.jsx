@@ -38,10 +38,10 @@ const projects = [
         id: 4,
         title: "Learnexa",
         description: "Learnexa is an AI tool that creates personalized quizzes and timetables from your inputs, making learning smarter and more efficient.",
-        tech: ["React", "Tailwind", "Firebase", "GROK API", "Express"],
+        tech: ["React", "Tailwind", "Firebase", "GROQ API", "Express"],
         image: learn,
         link: "#",
-        github: "https://github.com/AbdulRafay345/Learnexa.git"
+        github: "https://github.com/AbdulRafay345/Lernexa"
     },
     {
         id: 6,
