@@ -12,8 +12,8 @@ const projects = [
     {
         id: 1,
         title: "Nova-Bloom",
-        description: "A bakery management system for a single vendor, using react and firebase",
-        tech: ["React", "Bootstrap", "Firebase"],
+        description: "A full-stack food ordering web app with customer menu browsing, cart management, and an admin dashboard for order and menu control",
+        tech: ["React", "Firebase", "Ant Design", "Bootstrap", "Sass", "React Router"],
         image: bakery,
         link: "https://bakery-manager-12.web.app/",
         github: "https://github.com/AbdulRafay345/nova-bloom"
