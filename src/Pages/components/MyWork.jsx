@@ -6,6 +6,8 @@ import intern from '../assets/intern.webp'
 import event from "../assets/event.webp"
 import learn from "../assets/learn.webp"
 import founder from "../assets/founder.webp"
+import puzzle from "../assets/puzzle.webp"
+
 const projects = [
     {
         id: 1,
@@ -54,6 +56,15 @@ const projects = [
     },
     {
         id: 7,
+        title: "Tile Rush",
+        description: "An interactive 15-puzzle solver and visualiser with manual play, AI search algorithms, and side-by-side performance comparison",
+        tech: ["Python", "Flask", "HTML", "CSS", "JavaScript"],
+        image: puzzle,
+        link: "https://www.loom.com/share/2db3c541033747f787667d6abc3b94a1",
+        github: "https://github.com/AbdulRafay345/EventManagment-APP",
+    },
+    {
+        id: 8,
         title: "Next-Arm",
         description: "NextARM Web delivers cutting-edge web development, mobile apps, and cloud solutions to transform your business digitally",
         tech: ["React", "Tailwind", "Emailjs"],
