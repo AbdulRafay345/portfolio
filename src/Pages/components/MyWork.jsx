@@ -7,6 +7,7 @@ import event from "../assets/event.webp"
 import learn from "../assets/learn.webp"
 import founder from "../assets/founder.webp"
 import puzzle from "../assets/puzzle.webp"
+import stock_flow from "../assets/stock_flow.webp"
 
 const projects = [
     {
@@ -46,20 +47,29 @@ const projects = [
         github: "https://github.com/AbdulRafay345/Lernexa"
     },
     {
+        id: 5,
+        title: "Stock Flow",
+        description: "StockFlow is an intelligent inventory management system that utilizes self-balancing AVL trees and A* pathfinding to optimize stock tracking and warehouse logistics, making warehouse operations smarter and more efficient.",
+        tech: ["Python", "Tkinter", "AVL Tree", "A* Algorithm", "Nearest-Neighbor Heuristic"],
+        image: stock_flow,
+        link: "https://github.com/AbdulRafay345/StockFlow/releases/tag/v1.0.0",
+        github: "https://github.com/AbdulRafay345/StockFlow"
+    },
+    {
         id: 6,
-        title: "Event Planner",
-        description: "An event planner app with MongoDB-based authentication that allows users to securely log in and efficiently create, manage, and track all their personal or organizational events.",
-        tech: ["React Native", "Node.js", "MongoDB"],
-        image: event,
+        title: "Tile Rush",
+        description: "An interactive 15-puzzle solver and visualiser with manual play, AI search algorithms, and side-by-side performance comparison",
+        tech: ["Python", "Flask", "HTML", "CSS", "JavaScript"],
+        image: puzzle,
         link: "https://www.loom.com/share/2db3c541033747f787667d6abc3b94a1",
         github: "https://github.com/AbdulRafay345/EventManagment-APP",
     },
     {
         id: 7,
-        title: "Tile Rush",
-        description: "An interactive 15-puzzle solver and visualiser with manual play, AI search algorithms, and side-by-side performance comparison",
-        tech: ["Python", "Flask", "HTML", "CSS", "JavaScript"],
-        image: puzzle,
+        title: "Event Planner",
+        description: "An event planner app with MongoDB-based authentication that allows users to securely log in and efficiently create, manage, and track all their personal or organizational events.",
+        tech: ["React Native", "Node.js", "MongoDB"],
+        image: event,
         link: "https://www.loom.com/share/2db3c541033747f787667d6abc3b94a1",
         github: "https://github.com/AbdulRafay345/EventManagment-APP",
     },
