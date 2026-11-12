@@ -1,282 +1,56 @@
-import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight, ExternalLink, Github, Menu, Send } from 'lucide-react';
-import bakery from '../assets/bakery.webp'
-import next from '../assets/next.webp'
-import intern from '../assets/intern.webp'
-import event from "../assets/event.webp"
-import learn from "../assets/learn.webp"
-import founder from "../assets/founder.webp"
-import puzzle from "../assets/puzzle.webp"
-import stock_flow from "../assets/stock_flow.webp"
+import { ExternalLink, Github, Play, Download } from 'lucide-react';
+import Section from './Section';
+import { projects } from '../data/projects';
 
-const projects = [
-    {
-        id: 1,
-        title: "Nova-Bloom",
-        description: "A full-stack food ordering web app with customer menu browsing, cart management, and an admin dashboard for order and menu control",
-        tech: ["React", "Firebase", "Ant Design", "Bootstrap", "Sass", "React Router"],
-        image: bakery,
-        link: "https://bakery-manager-12.web.app/",
-        github: "https://github.com/AbdulRafay345/nova-bloom"
-    },
-    {
-        id: 2,
-        title: "Founder Pilot",
-        description: "AI-powered startup operations assistant and daily task manager for founders",
-        tech: ["Next.js", "TypeScript", "React", "Groq API", "Firebase", "Tailwind CSS", "Framer Motion",],
-        image: founder,
-        link: "https://founder-pilot-theta.vercel.app/",
-        github: "https://github.com/AbdulRafay345/FounderPilot",
-    },
-    {
-        id: 3,
-        title: "Internship-Platform",
-        description: "InternHub - A smart platform connecting students to internships, career roadmaps, and admin-managed opportunities across all fields.",
-        tech: ["React", "Tailwind", "Emailjs", "MongoDB"],
-        image: intern,
-        link: "#",
-        github: "https://github.com/abdullahbutt09/internship-platform"
-    },
-    {
-        id: 4,
-        title: "Learnexa",
-        description: "Learnexa is an AI tool that creates personalized quizzes and timetables from your inputs, making learning smarter and more efficient.",
-        tech: ["React", "Tailwind", "Firebase", "GROQ API", "Express"],
-        image: learn,
-        link: "#",
-        github: "https://github.com/AbdulRafay345/Lernexa"
-    },
-    {
-        id: 5,
-        title: "Stock Flow",
-        description: "StockFlow is an intelligent inventory management system that utilizes self-balancing AVL trees and A* pathfinding to optimize stock tracking and warehouse logistics, making warehouse operations smarter and more efficient.",
-        tech: ["Python", "Tkinter", "AVL Tree", "A* Algorithm", "Nearest-Neighbor Heuristic"],
-        image: stock_flow,
-        link: "https://github.com/AbdulRafay345/StockFlow/releases/tag/v1.0.0",
-        github: "https://github.com/AbdulRafay345/StockFlow"
-    },
-    {
-        id: 6,
-        title: "Tile Rush",
-        description: "An interactive 15-puzzle solver and visualiser with manual play, AI search algorithms, and side-by-side performance comparison",
-        tech: ["Python", "Flask", "HTML", "CSS", "JavaScript"],
-        image: puzzle,
-        link: "https://www.loom.com/share/2db3c541033747f787667d6abc3b94a1",
-        github: "https://github.com/AbdulRafay345/EventManagment-APP",
-    },
-    {
-        id: 7,
-        title: "Event Planner",
-        description: "An event planner app with MongoDB-based authentication that allows users to securely log in and efficiently create, manage, and track all their personal or organizational events.",
-        tech: ["React Native", "Node.js", "MongoDB"],
-        image: event,
-        link: "https://www.loom.com/share/2db3c541033747f787667d6abc3b94a1",
-        github: "https://github.com/AbdulRafay345/EventManagment-APP",
-    },
-    {
-        id: 8,
-        title: "Next-Arm",
-        description: "NextARM Web delivers cutting-edge web development, mobile apps, and cloud solutions to transform your business digitally",
-        tech: ["React", "Tailwind", "Emailjs"],
-        image: next,
-        link: "https://next-arm-1.vercel.app/",
-        github: "https://github.com/AbdulRafay345/next-arm"
-    },
-];
+// The first action label follows where the link goes
+function primaryAction(url) {
+  if (url.includes('loom.com')) return { label: 'Demo video', Icon: Play };
+  if (url.includes('github.com')) return { label: 'Release', Icon: Download };
+  return { label: 'Live site', Icon: ExternalLink };
+}
 
-// Floating icon component
-const FloatingIcon = ({ icon: Icon, className, delay }) => {
-    return (
-        <div
-            className={`absolute ${className} opacity-10`}
-            style={{
-                animation: `float 6s ease-in-out infinite`,
-                animationDelay: `${delay}s`
-            }}
-        >
-            <Icon size={48} className="text-gray-400" />
-        </div>
-    );
-};
+const actionClass =
+  'inline-flex h-9 items-center gap-2 rounded-lg border border-line bg-ink-raised px-3 text-sm text-fg transition-colors duration-150 hover:border-line-strong hover:bg-[#222735]';
 
 export default function MyWork() {
-    const [currentIndex, setCurrentIndex] = useState(0);
-
-    const getVisibleCount = () => {
-        if (typeof window !== 'undefined') {
-            if (window.innerWidth >= 1280) return 4; // xl screens
-            if (window.innerWidth >= 1024) return 3; // lg screens
-            if (window.innerWidth >= 768) return 2;  // md screens
-            return 1; // sm screens
-        }
-        return 4;
-    };
-
-    const [visibleCount, setVisibleCount] = useState(getVisibleCount());
-
-    React.useEffect(() => {
-        const handleResize = () => {
-            setVisibleCount(getVisibleCount());
-        };
-
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
-    const nextSlide = () => {
-        setCurrentIndex((prev) => (prev + 1) % projects.length);
-    };
-
-    const prevSlide = () => {
-        setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length);
-    };
-
-    const getVisibleProjects = () => {
-        const visible = [];
-        for (let i = 0; i < visibleCount; i++) {
-            visible.push(projects[(currentIndex + i) % projects.length]);
-        }
-        return visible;
-    };
-
-    const visibleProjects = getVisibleProjects();
-
-    return (
-        <div className="h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-black text-white overflow-hidden">
-            <style>{`
-      @keyframes float {
-        0%, 100% { transform: translateY(0px) rotate(0deg); }
-        50% { transform: translateY(-20px) rotate(5deg); }
-      }
-
-      @keyframes fade-in-up {
-        from { opacity: 0; transform: translateY(30px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-
-      @keyframes shimmer {
-        0% { background-position: -1000px 0; }
-        100% { background-position: 1000px 0; }
-      }
-
-      .animate-fade-in-up {
-        animation: fade-in-up 0.8s ease-out;
-      }
-
-      .gradient-text {
-        background: linear-gradient(90deg, #06b6d4, #8b5cf6, #ec4899);
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-size: 200% auto;
-        animation: shimmer 3s linear infinite;
-      }
-
-      .card-3d {
-        transform-style: preserve-3d;
-        transition: transform 0.3s ease;
-      }
-
-      .card-hover:hover {
-        transform: translateY(-8px);
-      }
-
-      .tech-badge {
-        backdrop-filter: blur(10px);
-        background: rgba(255,255,255,0.08);
-        border: 1px solid rgba(255,255,255,0.15);
-      }
-
-      .project-image {
-        transition: transform 0.3s ease;
-      }
-
-      .card-hover:hover .project-image {
-        transform: scale(1.05);
-      }
-    `}</style>
-
-            <section id='mywork' className="relative px-6 md:px-8 h-full flex flex-col justify-center overflow-hidden">
-                {/* Floating Icons */}
-                <FloatingIcon icon={Menu} className="top-20 left-10" delay={1} />
-                <FloatingIcon icon={Send} className="bottom-24 right-10" delay={2} />
-
-                <div className="max-w-7xl mx-auto w-full flex flex-col justify-center">
-                    {/* Title */}
-                    <h2 className="text-3xl md:text-6xl lg:text-6xl font-bold mb-3 animate-fade-in-up text-center">
-                        My Recent <span className="gradient-text">Works</span>
-                    </h2>
-                    <p className="text-gray-400 text-center mb-6 md:mb-10">
-                        Explore my latest projects and innovations
-                    </p>
-
-                    {/* Carousel */}
-                    <div className="relative">
-                        {/* Prev Button */}
-                        <button
-                            onClick={prevSlide}
-                            className="absolute -left-4 md:-left-6 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-gray-800/80 hover:bg-gray-700/80 backdrop-blur-md rounded-full flex items-center justify-center transition border border-gray-700"
-                        >
-                            <ChevronLeft size={20} />
-                        </button>
-
-                        {/* Next Button */}
-                        <button
-                            onClick={nextSlide}
-                            className="absolute -right-4 md:-right-6 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-gray-800/80 hover:bg-gray-700/80 backdrop-blur-md rounded-full flex items-center justify-center transition border border-gray-700"
-                        >
-                            <ChevronRight size={20} />
-                        </button>
-
-                        {/* Grid */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                            {visibleProjects.map((project) => (
-                                <div key={project.id} className="card-3d card-hover bg-gray-800/40 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700/50 h-[380px] flex flex-col">
-
-                                    {/* Image */}
-                                    <div className="project-image w-full h-[150px] relative overflow-hidden bg-gray-900">
-                                        <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
-                                    </div>
-
-                                    {/* Content */}
-                                    <div className="p-4 flex flex-col justify-between flex-grow">
-
-                                        {/* Title + Description */}
-                                        <div>
-                                            <h3 className="text-lg font-bold text-white mb-1">{project.title}</h3>
-                                            <p className="text-gray-400 text-xs mb-3 line-clamp-2 min-h-[32px]">
-                                                {project.description}
-                                            </p>
-                                        </div>
-
-                                        {/* Tech Tags */}
-                                        <div className="max-h-[60px] overflow-hidden mb-3">
-                                            <div className="flex flex-wrap gap-1.5">
-                                                {project.tech.map((tech, idx) => (
-                                                    <span key={idx} className="tech-badge px-2 py-1 rounded-full text-[10px] font-medium text-gray-300 whitespace-nowrap">
-                                                        {tech}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        </div>
-
-                                        {/* Buttons */}
-                                        <div className="flex gap-2 mt-auto">
-                                            <a href={project.link} target='_blank' className="flex-1 border border-cyan-500/40 bg-cyan-500/10 hover:bg-cyan-500/20 px-3 py-1.5 rounded-md text-xs flex items-center justify-center gap-1 transition">
-                                                <ExternalLink size={14} /> Live
-                                            </a>
-                                            <a href={project.github} target='_blank' className="flex-1 border border-gray-500/30 bg-gray-700/30 hover:bg-gray-700/50 px-3 py-1.5 rounded-md text-xs flex items-center justify-center gap-1 transition">
-                                                <Github size={14} /> Code
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            ))}
-                        </div>
-                    </div>
+  return (
+    <Section id="work" title="Projects" intro="Web, mobile and desktop projects">
+      <ol className="grid gap-6 md:grid-cols-2">
+        {projects.map((p, i) => {
+          const hasLive = p.link && p.link !== '#';
+          const { label, Icon } = hasLive ? primaryAction(p.link) : {};
+          return (
+            <li key={p.id} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-ink-card">
+              <div className="relative aspect-2/1 overflow-hidden bg-ink-deep">
+                <img
+                  src={p.image}
+                  alt={`${p.title} screenshot`}
+                  loading="lazy"
+                  className={`absolute inset-0 h-full w-full ${p.fit === 'contain' ? 'object-contain' : 'object-cover object-top'}`}
+                />
+              </div>
+              <div className="flex flex-1 flex-col p-6">
+                <div className="flex items-baseline gap-3">
+                  <span className="tnum font-mono text-xs text-fg-3">{String(i + 1).padStart(2, '0')}</span>
+                  <h3 className="text-lg font-medium">{p.title}</h3>
                 </div>
-            </section>
-        </div>
-    )
+                <p className="mt-3 text-sm leading-5 text-fg-2">{p.description}</p>
+                <p className="mt-4 font-mono text-xs leading-5 text-fg-3">{p.tech.join(' · ')}</p>
+                <div className="mt-auto flex gap-2 pt-6">
+                  {hasLive && (
+                    <a href={p.link} target="_blank" rel="noopener noreferrer" className={actionClass}>
+                      <Icon size={16} strokeWidth={1.5} className="text-fg-3" /> {label}
+                    </a>
+                  )}
+                  <a href={p.github} target="_blank" rel="noopener noreferrer" className={actionClass}>
+                    <Github size={16} strokeWidth={1.5} className="text-fg-3" /> Code
+                  </a>
+                </div>
+              </div>
+            </li>
+          );
+        })}
+      </ol>
+    </Section>
+  );
 }

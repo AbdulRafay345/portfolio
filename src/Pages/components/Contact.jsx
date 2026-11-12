@@ -1,25 +1,28 @@
-import React, { useRef, useState } from "react";
-import emailjs from "@emailjs/browser";
-import { Send, Menu } from "lucide-react";
+import React, { useRef, useState } from 'react';
+import emailjs from '@emailjs/browser';
+import Section from './Section';
 
-const FloatingIcon = ({ icon: Icon, className, delay }) => {
+const field =
+  'mt-2 h-11 w-full rounded-lg border border-line bg-ink-card px-4 text-base text-fg transition-colors duration-150 hover:border-line-strong focus:border-accent focus:outline-none';
+
+function Field({ label, name, type = 'text', autoComplete }) {
   return (
-    <div
-      className={`absolute ${className} opacity-10`}
-      style={{
-        animation: `float 6s ease-in-out infinite`,
-        animationDelay: `${delay}s`,
-      }}
-    >
-      <Icon size={48} className="text-gray-400" />
-    </div>
+    <label className="block text-sm text-fg-2">
+      {label}
+      <input type={type} name={name} required autoComplete={autoComplete} className={field} />
+    </label>
   );
-};
+}
 
-const Contact = () => {
+export default function Contact() {
   const form = useRef();
   const [loading, setLoading] = useState(false);
-  const [toast, setToast] = useState({ show: false, success: true, message: "" });
+  const [toast, setToast] = useState({ show: false, success: true, message: '' });
+
+  const notify = (success, message) => {
+    setToast({ show: true, success, message });
+    setTimeout(() => setToast((t) => ({ ...t, show: false })), 3000);
+  };
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -33,108 +36,54 @@ const Contact = () => {
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       )
       .then(
-        (result) => {
+        () => {
           setLoading(false);
           form.current.reset();
-          setToast({ show: true, success: true, message: "Message sent successfully!" });
-          setTimeout(() => setToast({ ...toast, show: false }), 3000); // hide after 3s
+          notify(true, 'Message sent');
         },
-        (error) => {
+        () => {
           setLoading(false);
-          setToast({ show: true, success: false, message: "Failed to send message. Try again." });
-          setTimeout(() => setToast({ ...toast, show: false }), 3000); // hide after 3s
+          notify(false, 'Message not sent, try again');
         }
       );
   };
 
   return (
-    <section id="contact" className="relative px-8 py-20 overflow-hidden">
-      <FloatingIcon icon={Send} className="top-10 left-20" delay={0} />
-      <FloatingIcon icon={Menu} className="bottom-10 right-20" delay={1.5} />
-
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-        <div className="animate-slide-in-left">
-          <h2 className="text-4xl font-bold mb-6">
-            Got a project in
-            <br />
-            <span className="gradient-text">mind?</span>
-          </h2>
-          <div className="w-64 h-64 relative">
-            {/* Decorative blocks */}
-            <div className="absolute inset-0">
-              <div className="w-full h-full relative">
-                <div className="absolute bottom-0 left-8 w-16 h-32 bg-gradient-to-t from-[#00d4ff] to-[#7b2ff7] rounded-t-lg"></div>
-                <div className="absolute bottom-0 left-28 w-16 h-48 bg-gradient-to-t from-[#7b2ff7] to-pink-500 rounded-t-lg"></div>
-                <div className="absolute bottom-0 left-48 w-16 h-40 bg-gradient-to-t from-pink-500 to-[#00d4ff] rounded-t-lg"></div>
-                <div className="absolute top-12 right-8 w-24 h-24 bg-white rounded-full flex items-center justify-center">
-                  <div className="w-16 h-16 bg-[#1a1d2e] rounded-full"></div>
-                </div>
-              </div>
-            </div>
-          </div>
+    <Section id="contact" title="Got a project in mind?" intro="Tell me what you want to build" split>
+      <form ref={form} onSubmit={sendEmail} className="grid gap-6 sm:grid-cols-2">
+        <Field label="Name" name="user_name" autoComplete="name" />
+        <Field label="Email" name="user_email" type="email" autoComplete="email" />
+        <Field label="Subject" name="subject" />
+        <Field label="Phone" name="user_phone" type="tel" autoComplete="tel" />
+        <label className="block text-sm text-fg-2 sm:col-span-2">
+          Message
+          <textarea
+            name="message"
+            rows={5}
+            required
+            className={`${field} h-auto resize-none py-3`}
+          />
+        </label>
+        <div className="sm:col-span-2">
+          <button
+            type="submit"
+            disabled={loading}
+            className="h-11 rounded-lg bg-accent px-5 text-base font-medium text-ink-deep transition-colors duration-150 hover:bg-accent-hover active:scale-[0.98] disabled:opacity-60"
+          >
+            {loading ? 'Sending' : 'Send message'}
+          </button>
         </div>
+      </form>
 
-        <div className="animate-slide-in-right">
-          <form ref={form} onSubmit={sendEmail} className="space-y-6">
-            <input
-              type="text"
-              name="user_name"
-              placeholder="Your name"
-              required
-              className="w-full bg-[#252938] border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:border-[#00d4ff] transition-colors"
-            />
-            <input
-              type="email"
-              name="user_email"
-              placeholder="Your email"
-              required
-              className="w-full bg-[#252938] border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:border-[#00d4ff] transition-colors"
-            />
-            <input
-              type="text"
-              name="subject"
-              placeholder="Subject"
-              required
-              className="w-full bg-[#252938] border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:border-[#00d4ff] transition-colors"
-            />
-            <input
-              type="tel"
-              name="user_phone"
-              placeholder="Your Phone"
-              required
-              className="w-full bg-[#252938] border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:border-[#00d4ff] transition-colors"
-            />
-            <textarea
-              name="message"
-              placeholder="Your message"
-              rows={4}
-              required
-              className="w-full bg-[#252938] border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:border-[#00d4ff] transition-colors resize-none"
-            ></textarea>
-
-            <button
-              type="submit"
-              className="bg-[#00d4ff] text-[#1a1d2e] px-8 py-3 rounded-full font-semibold hover:bg-[#00b8e6] transition-all neon-border"
-              disabled={loading}
-            >
-              {loading ? "Sending..." : "Send message"}
-            </button>
-          </form>
-        </div>
-      </div>
-
-      {/* Toast Notification */}
       {toast.show && (
         <div
-          className={`fixed bottom-8 right-8 px-6 py-4 rounded-lg text-white font-semibold shadow-lg transition-all ${
-            toast.success ? "bg-green-500" : "bg-red-500"
-          }`}
+          role="status"
+          className="fixed right-6 bottom-6 flex items-center gap-3 rounded-xl border border-line-strong bg-ink-raised px-4 py-3 text-sm"
         >
+          <span className={`size-2 rounded-full ${toast.success ? 'bg-[#4cc38a]' : 'bg-[#e5484d]'}`} />
           {toast.message}
         </div>
       )}
-    </section>
+    </Section>
   );
-};
-
-export default Contact;
+}

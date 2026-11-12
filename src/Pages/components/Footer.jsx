@@ -1,22 +1,27 @@
-import React from 'react';
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin } from 'lucide-react';
+
+// Add the LinkedIn profile URL here and the icon appears
+const LINKEDIN_URL = '';
+
+const iconLink =
+  'text-fg-3 transition-colors duration-150 hover:text-fg';
 
 export default function Footer() {
-    return (
-        <footer className="px-8 py-8 border-t border-gray-800">
-            <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
-                <div className="text-sm text-gray-500 mb-4 md:mb-0">
-                    © Abdul Rafay. All rights reserved.
-                </div>
-                <div className="flex space-x-6">
-                    <a href="https://github.com/AbdulRafay345" target='blank_' className="text-gray-500 hover:text-[#00d4ff] transition-colors">
-                        <Github className="w-5 h-5" />
-                    </a>
-                    <a href="#" className="text-gray-500 hover:text-[#00d4ff] transition-colors">
-                        <Linkedin className="w-5 h-5" />
-                    </a>
-                </div>
-            </div>
-        </footer>
-    );
+  return (
+    <footer className="border-t border-line px-6 py-8 md:px-8">
+      <div className="mx-auto flex max-w-[1200px] items-center justify-between">
+        <p className="text-sm text-fg-3">© Abdul Rafay</p>
+        <div className="flex gap-4">
+          <a href="https://github.com/AbdulRafay345" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className={iconLink}>
+            <Github size={18} strokeWidth={1.5} />
+          </a>
+          {LINKEDIN_URL && (
+            <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className={iconLink}>
+              <Linkedin size={18} strokeWidth={1.5} />
+            </a>
+          )}
+        </div>
+      </div>
+    </footer>
+  );
 }

@@ -1,1 +1,56 @@
 @import "tailwindcss";
+
+/* Direction: a developer's desk at night. Ink neutrals, one cyan accent. */
+@theme {
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, SFMono-Regular, monospace;
+
+  --color-ink-deep: #07080d;
+  --color-ink: #0b0d14;
+  --color-ink-card: #11141c;
+  --color-ink-raised: #1a1e28;
+  --color-line: rgb(238 240 245 / 0.08);
+  --color-line-strong: rgb(238 240 245 / 0.16);
+  --color-fg: #eef0f5;
+  --color-fg-2: #a3a9b8;
+  --color-fg-3: #7a8296;
+  --color-accent: #00d4ff;
+  --color-accent-hover: #33ddff;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 64px;
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.tnum { font-variant-numeric: tabular-nums; }
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* One entrance on load: short fade and rise with a small stagger */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.rise { animation: rise 400ms var(--ease-out) both; }
+.rise-1 { animation-delay: 60ms; }
+.rise-2 { animation-delay: 120ms; }
+.rise-3 { animation-delay: 180ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .rise { animation: none; }
+}
